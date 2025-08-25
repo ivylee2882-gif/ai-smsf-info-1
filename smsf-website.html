@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMSF Guide Australia - Complete Information Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #2a5298;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .card a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: 2px solid #2a5298;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .card a:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        .qa-section {
+            margin: 30px 0;
+        }
+
+        .qa-category {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .qa-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .qa-category h3 {
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+
+        .qa-content {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .qa-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .question {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .question h4 {
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .calc-input {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #2a5298;
+        }
+
+        .input-group input, .input-group select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .calc-button {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .results.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .results h3 {
+            color: #2a5298;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .case-study {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #2a5298;
+        }
+
+        .case-study h3 {
+            color: #2a5298;
+            margin-bottom: 15px;
+        }
+
+        .case-study p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .pros, .cons {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pros {
+            border-left: 5px solid #28a745;
+        }
+
+        .cons {
+            border-left: 5px solid #dc3545;
+        }
+
+        .pros h3 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .cons h3 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        .point {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .point h4 {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .calc-input {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">SMSF Guide Australia</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="questions">Top Q&A</a></li>
+                        <li><a href="#" class="nav-link" data-page="proscons">Pros & Cons</a></li>
+                        <li><a href="#" class="nav-link" data-page="cases">Hot Cases</a></li>
+                        <li><a href="#" class="nav-link" data-page="calculator">Wealth Calculator</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- HOME PAGE -->
+            <div id="home" class="page active">
+                <div class="hero">
+                    <h1>Welcome to SMSF Guide Australia</h1>
+                    <p>Your comprehensive resource for Self-Managed Super Fund information</p>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card">
+                        <h3>Why This Website Exists</h3>
+                        <p>This website was created for people with zero knowledge about Self-Managed Super Funds (SMSFs) to quickly understand the fundamentals. We provide clear, concise information to help you make informed decisions about your superannuation future.</p>
+                        <p>Our mission is to demystify SMSFs and provide accessible information for everyday Australians considering taking control of their super.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>History of SMSFs in Australia</h3>
+                        <p>Self-Managed Super Funds were introduced in Australia in the 1990s as part of superannuation reforms. They've grown from a niche option to managing over $800 billion in assets today.</p>
+                        <p>SMSFs allow individuals to take control of their retirement savings, making investment decisions while complying with superannuation laws.</p>
+                        <a href="https://www.smsfassociation.com/about-smsfs/smsf-history" target="_blank">Learn more about SMSF history →</a>
+                    </div>
+
+                    <div class="card">
+                        <h3>Key Players & Regulators</h3>
+                        <p><strong>Australian Taxation Office (ATO):</strong> The primary regulator of SMSFs, ensuring compliance with superannuation laws.</p>
+                        <a href="https://www.ato.gov.au/super/self-managed-super-funds" target="_blank">Visit ATO SMSF Portal →</a>
+                        
+                        <p><strong>Australian Prudential Regulation Authority (APRA):</strong> Regulates small APRA funds and larger super funds.</p>
+                        <a href="https://www.apra.gov.au/" target="_blank">Visit APRA Website →</a>
+                        
+                        <p><strong>SMSF Association:</strong> The peak body representing SMSF professionals and trustees.</p>
+                        <a href="https://www.smsfassociation.com/" target="_blank">Visit SMSF Association →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOP Q&A PAGE -->
+            <div id="questions" class="page">
+                <h1>Top SMSF Questions & Answers</h1>
+                <p>Click on each category to explore detailed questions and answers with supporting resources.</p>
+
+                <div class="qa-section">
+                    <div class="qa-category" onclick="toggleQA('who')">
+                        <h3>Who Can Set Up an SMSF?</h3>
+                        <p>Understanding eligibility and requirements for SMSF establishment</p>
+                        <div id="who" class="qa-content">
+                            <div class="question">
+                                <h4>Can anyone set up an SMSF?</h4>
+                                <p>Generally yes, but you must be eligible to be a trustee, not be disqualified, and comply with member limits.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/setting-up-an-smsf/eligibility" target="_blank">ATO Eligibility Guide</a>
+                            </div>
+                            <div class="question">
+                                <h4>How many members can an SMSF have?</h4>
+                                <p>Maximum of 6 members, increased from 4 in 2021. All members must be trustees or directors.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/setting-up-an-smsf/smsf-members" target="_blank">ATO Member Requirements</a>
+                            </div>
+                            <div class="question">
+                                <h4>Can children be SMSF members?</h4>
+                                <p>Yes, but children under 18 need a parent/guardian as their legal personal representative as trustee.</p>
+                                <a href="https://www.smsfassociation.com/resources/smsf-technical-library/children-and-smsfs" target="_blank">SMSF Association Guide</a>
+                            </div>
+                            <div class="question">
+                                <h4>What disqualifies someone from being a trustee?</h4>
+                                <p>Bankruptcy, criminal convictions, civil penalties under superannuation law, and being disqualified by ATO or court.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/trustees-and-directors/disqualified-persons" target="_blank">ATO Disqualification Rules</a>
+                            </div>
+                            <div class="question">
+                                <h4>Can overseas residents be SMSF members?</h4>
+                                <p>Complex rules apply. Generally possible but with restrictions on central management, control, and residency tests.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/in-detail/smsfs-and-residency" target="_blank">ATO Residency Rules</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qa-category" onclick="toggleQA('why')">
+                        <h3>Why Set Up an SMSF?</h3>
+                        <p>Benefits and motivations for choosing self-managed superannuation</p>
+                        <div id="why" class="qa-content">
+                            <div class="question">
+                                <h4>What are the main benefits of SMSFs?</h4>
+                                <p>Control over investments, potential cost savings for larger balances, estate planning flexibility, and direct property investment.</p>
+                                <a href="https://www.smsfassociation.com/about-smsfs/benefits-of-smsfs" target="_blank">SMSF Benefits Overview</a>
+                            </div>
+                            <div class="question">
+                                <h4>When does an SMSF become cost-effective?</h4>
+                                <p>Generally recommended for balances over $200,000-$500,000, depending on investment strategy and administrative costs.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/thinking-of-starting-an-smsf/cost-of-running-an-smsf" target="_blank">ATO Cost Considerations</a>
+                            </div>
+                            <div class="question">
+                                <h4>Can SMSFs invest in property?</h4>
+                                <p>Yes, including residential and commercial property, but strict rules apply regarding related party transactions.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/investing/property" target="_blank">ATO Property Investment Rules</a>
+                            </div>
+                            <div class="question">
+                                <h4>What investment flexibility do SMSFs offer?</h4>
+                                <p>Wide range including shares, property, term deposits, but must comply with investment restrictions.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/investing" target="_blank">ATO Investment Options</a>
+                            </div>
+                            <div class="question">
+                                <h4>How do SMSFs help with estate planning?</h4>
+                                <p>Greater control over death benefits, binding nominations, and succession planning for family wealth.</p>
+                                <a href="https://www.smsfassociation.com/resources/technical-resources/estate-planning" target="_blank">Estate Planning Guide</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qa-category" onclick="toggleQA('how-setup')">
+                        <h3>How to Set Up an SMSF?</h3>
+                        <p>Step-by-step process for establishing your SMSF</p>
+                        <div id="how-setup" class="qa-content">
+                            <div class="question">
+                                <h4>What are the first steps to set up an SMSF?</h4>
+                                <p>Establish corporate or individual trustees, create trust deed, register with ATO, obtain ABN and TFN.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/setting-up-an-smsf" target="_blank">ATO Setup Guide</a>
+                            </div>
+                            <div class="question">
+                                <h4>Do I need professional help to set up an SMSF?</h4>
+                                <p>While not mandatory, professional advice is highly recommended for legal compliance and optimal structure setup.</p>
+                                <a href="https://www.smsfassociation.com/find-an-smsf-specialist" target="_blank">Find SMSF Specialists</a>
+                            </div>
+                            <div class="question">
+                                <h4>What documents are required for SMSF setup?</h4>
+                                <p>Trust deed, trustee resolutions, investment strategy, and various ATO registration forms and applications.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/setting-up-an-smsf/step-by-step-guide" target="_blank">ATO Document Checklist</a>
+                            </div>
+                            <div class="question">
+                                <h4>How long does SMSF setup take?</h4>
+                                <p>Typically 2-6 weeks for registration, longer if transferring existing super balances from other funds.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/setting-up-an-smsf/timeframes" target="_blank">Setup Timeframes</a>
+                            </div>
+                            <div class="question">
+                                <h4>What are the setup costs for an SMSF?</h4>
+                                <p>Initial costs range from $1,000-$5,000 including legal, accounting, and registration fees depending on complexity.</p>
+                                <a href="https://www.smsfassociation.com/resources/cost-calculator" target="_blank">SMSF Cost Calculator</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qa-category" onclick="toggleQA('how-manage')">
+                        <h3>How to Manage an SMSF?</h3>
+                        <p>Ongoing responsibilities and management requirements</p>
+                        <div id="how-manage" class="qa-content">
+                            <div class="question">
+                                <h4>What are trustees' ongoing responsibilities?</h4>
+                                <p>Investment decisions, record keeping, annual returns, audits, compliance with superannuation and tax laws.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/trustees-and-directors/trustee-responsibilities" target="_blank">Trustee Responsibilities</a>
+                            </div>
+                            <div class="question">
+                                <h4>How often must SMSFs be audited?</h4>
+                                <p>Annually by an approved SMSF auditor. Audit must be completed before lodging annual return.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/managing-your-smsf/smsf-audit" target="_blank">SMSF Audit Requirements</a>
+                            </div>
+                            <div class="question">
+                                <h4>What records must SMSFs maintain?</h4>
+                                <p>Financial records, investment decisions, member records, minutes of trustee meetings for minimum 10 years.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/managing-your-smsf/record-keeping" target="_blank">Record Keeping Requirements</a>
+                            </div>
+                            <div class="question">
+                                <h4>When are SMSF annual returns due?</h4>
+                                <p>By October 31 following the end of financial year, or extended deadline if using registered agent.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/lodging-your-smsf-annual-return" target="_blank">Annual Return Guide</a>
+                            </div>
+                            <div class="question">
+                                <h4>What happens if SMSF becomes non-compliant?</h4>
+                                <p>Potential penalties, loss of tax concessions, additional tax on income and capital gains at highest rates.</p>
+                                <a href="https://www.ato.gov.au/super/self-managed-super-funds/ensuring-compliance/non-compliance-and-penalties" target="_blank">Non-Compliance Consequences</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROS & CONS PAGE -->
+            <div id="proscons" class="page">
+                <h1>SMSF Advantages & Disadvantages</h1>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h3>Advantages</h3>
+                        
+                        <div class="point">
+                            <h4>1. Investment Control</h4>
+                            <p>Complete control over investment decisions, asset allocation, and timing of transactions within regulatory limits.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/investing" target="_blank">ATO Investment Rules</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>2. Property Investment</h4>
+                            <p>Direct property investment including residential and commercial real estate, not available in retail funds.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/investing/property" target="_blank">Property Investment Guide</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>3. Cost Effectiveness</h4>
+                            <p>Potentially lower fees for larger balances compared to retail and industry super funds.</p>
+                            <a href="https://www.smsfassociation.com/resources/cost-calculator" target="_blank">Cost Comparison Tool</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>4. Estate Planning</h4>
+                            <p>Enhanced control over death benefits and succession planning with binding death benefit nominations.</p>
+                            <a href="https://www.smsfassociation.com/resources/technical-resources/estate-planning" target="_blank">Estate Planning Resources</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>5. Tax Planning</h4>
+                            <p>Greater flexibility in tax planning strategies including timing of capital gains and losses.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/tax-and-compliance" target="_blank">SMSF Tax Guide</a>
+                        </div>
+                    </div>
+                    
+                    <div class="cons">
+                        <h3>Disadvantages</h3>
+                        
+                        <div class="point">
+                            <h4>1. Time Commitment</h4>
+                            <p>Significant time required for administration, compliance, investment research, and ongoing management responsibilities.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/trustees-and-directors/trustee-responsibilities" target="_blank">Trustee Responsibilities</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>2. Compliance Burden</h4>
+                            <p>Complex regulatory requirements with severe penalties for non-compliance including potential fund disqualification.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/ensuring-compliance" target="_blank">Compliance Requirements</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>3. Limited Diversification</h4>
+                            <p>May lack diversification benefits of large institutional funds, particularly for smaller balances.</p>
+                            <a href="https://www.smsfassociation.com/resources/smsf-technical-library/investment-diversification" target="_blank">Diversification Guide</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>4. No Professional Management</h4>
+                            <p>Loss of professional fund management expertise and institutional investment opportunities available to large funds.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/thinking-of-starting-an-smsf" target="_blank">Considerations Before Starting</a>
+                        </div>
+                        
+                        <div class="point">
+                            <h4>5. Ongoing Costs</h4>
+                            <p>Annual costs including audit, accounting, and administration fees regardless of fund performance or balance.</p>
+                            <a href="https://www.ato.gov.au/super/self-managed-super-funds/thinking-of-starting-an-smsf/cost-of-running-an-smsf" target="_blank">Running Costs Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOT CASES PAGE -->
+            <div id="cases" class="page">
+                <h1>Top 10 Hot SMSF Court Cases</h1>
+                <p>Important legal cases that have shaped SMSF law and compliance requirements.</p>
+                
+                <div class="case-study">
+                    <h3>1. Clark v. FCT (2011) - In-house Asset Rules</h3>
+                    <p>This landmark case established strict interpretation of in-house asset rules where Clark's SMSF acquired units in a unit trust that invested in property leased to Clark's business. The Federal Court ruled this was an in-house asset breach, establishing that indirect investments can still violate the 5% in-house asset limit. The case highlighted the need for careful structuring when SMSFs invest in entities related to members.</p>
+                    <p>The decision reinforced that substance over form applies in determining in-house assets, and trustees must consider the ultimate beneficial ownership and control of investments. This case significantly impacted how SMSFs structure property investments and related party transactions.</p>
+                    <a href="https://www.ato.gov.au/law/view/document?DocID=JUD/178-11/00001" target="_blank">Full Case Details - ATO</a>
+                </div>
+                
+                <div class="case-study">
+                    <h3>2. Buckeridge v. FCT (2015) -
